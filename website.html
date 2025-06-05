@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palzo - Coming Soon! Your Everyday Helper, On Demand</title>
+    <link rel="icon" href="Palzo Main Logo.jpeg" type="image/jpeg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #FF8C00 0%, #FFB800 100%); /* Palzo Orange Gradient */
+        }
+        .palzo-orange-text { color: #FF7700; }
+        .palzo-orange-bg { background-color: #FF7700; }
+
+        .btn-palzo-primary {
+            background-color: #FF7700; /* Main app orange */
+            color: white;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-palzo-primary:hover {
+            background-color: #E66A00; /* Darker orange on hover */
+            transform: translateY(-2px);
+        }
+        .btn-palzo-secondary {
+            background-color: transparent;
+            border: 2px solid #FF7700;
+            color: #FF7700;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-palzo-secondary:hover {
+            background-color: #FF7700;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background-color: #FF7700;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #FF7700;
+        }
+        /* Phone Mockup Styles */
+        .phone-mockup {
+            width: 280px; height: 560px; background-color: #2d3748; /* Darker gray for phone body */
+            border-radius: 35px; padding: 15px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.35);
+            position: relative;
+            border: 4px solid #1a202c; /* Phone border */
+        }
+        .phone-screen {
+            /* background-color: #FFF7ED; /* Fallback if image doesn't load */
+            background-image: url('your-simulator-image.png'); /* <<< REPLACE THIS PATH */
+            background-size: cover; /* Cover the entire screen area */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat;
+            height: 100%; border-radius: 25px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            overflow: hidden; 
+            text-align: center;
+            position: relative; 
+        }
+        .phone-notch {
+            width: 45%; height: 22px; background-color: #1a202c;
+            border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+            position: absolute; top: 15px; left: 50%; transform: translateX(-50%);
+            z-index: 10; /* Ensure notch is above screen content */
+        }
+        .logo-text-nav { /* Style for PALZO text in Nav */
+            font-weight: 900; /* Extra Bold */
+            font-size: 1.875rem; /* text-3xl */
+            letter-spacing: -0.025em;
+            background: linear-gradient(to right, #FF8C00, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 2px 5px; /* Slight padding if needed */
+        }
+        .palzo-logo-hero {
+             width: 100px; /* Adjust as needed */
+             height: 100px;
+             margin-bottom: 1.5rem; /* mb-6 */
+        }
+        /* Removed phone-screen-logo, text-main, text-sub, cta as background image will be used */
+
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-700 antialiased">
+
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-lg shadow-sm fixed w-full z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <span class="logo-text-nav">PALZO</span>
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#features" class="nav-link text-gray-600 font-medium">Features</a>
+                <a href="#how-it-works" class="nav-link text-gray-600 font-medium">How it Works</a>
+                <a href="https://forms.gle/vvw95bXZYDf2LVSq6" target="_blank" class="btn-palzo-primary text-white font-semibold py-2 px-5 rounded-lg shadow-md">
+                    Get Early Access
+                </a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-600 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg py-2">
+            <a href="#features" class="block px-6 py-2 text-gray-600 hover:bg-orange-50">Features</a>
+            <a href="#how-it-works" class="block px-6 py-2 text-gray-600 hover:bg-orange-50">How it Works</a>
+            <a href="https://forms.gle/vvw95bXZYDf2LVSq6" target="_blank" class="block px-6 py-2 mt-2 mx-4 text-center btn-palzo-primary text-white font-semibold rounded-lg">
+                Get Early Access
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-bg text-white pt-32 pb-20 md:pt-48 md:pb-28 relative">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
+                <img src="Palzo Main Logo.jpeg" alt="Palzo Logo" class="palzo-logo-hero mx-auto md:mx-0 rounded-2xl shadow-xl"/>
+                <h1 class="text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-4 leading-tight">
+                    Palzo is Coming Soon!
+                </h1>
+                <p class="text-2xl lg:text-3xl font-semibold mb-6 text-orange-100">
+                    Your Everyday Helper, On Demand.
+                </p>
+                <p class="text-lg lg:text-xl mb-10 text-orange-50 leading-relaxed">
+                    Get ready for Palzo! We're building a platform to connect you with trusted local Pals for any task. Be the first to know when we launch and get exclusive early access.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="https://forms.gle/vvw95bXZYDf2LVSq6" target="_blank" class="btn-palzo-primary bg-white text-orange-600 font-bold py-3 px-8 rounded-lg text-lg shadow-xl hover:bg-orange-50 transform hover:scale-105 transition-all duration-300">
+                        Notify Me & Get Early Access
+                    </a>
+                    <a href="#for-pals" class="btn-palzo-secondary border-white text-white hover:bg-white hover:text-orange-600 font-bold py-3 px-8 rounded-lg text-lg shadow-xl transform hover:scale-105 transition-all duration-300">
+                        Interested in Becoming a Pal?
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center md:justify-end relative mt-12 md:mt-0">
+                <div class="phone-mockup transform scale-90 md:scale-100">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <!-- Content inside phone-screen is now controlled by its background-image style -->
+                        <!-- You can remove the img and text elements that were here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- "What is Palzo?" remains relevant for vision -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">What is Palzo? (Our Vision)</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12 leading-relaxed">
+                Palzo will be your go-to community platform connecting you with reliable local individuals ("Pals") ready to assist with a wide variety of tasks. Whether you're too busy, lack the skills, or just need an extra hand, Palzo will make getting help easy and secure.
+            </p>
+             <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 bg-orange-50 rounded-xl shadow-sm feature-card transition-all duration-300">
+                    <div class="flex justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 palzo-orange-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Instant Help</h3>
+                    <p class="text-gray-600">Post a task and quickly connect with available Pals in your vicinity.</p>
+                </div>
+                <div class="p-6 bg-orange-50 rounded-xl shadow-sm feature-card transition-all duration-300">
+                    <div class="flex justify-center mb-4">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 palzo-orange-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m0 6H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Trusted Community</h3>
+                    <p class="text-gray-600">Pals will be reviewed, ensuring a safe and reliable experience.</p>
+                </div>
+                <div class="p-6 bg-orange-50 rounded-xl shadow-sm feature-card transition-all duration-300">
+                    <div class="flex justify-center mb-4">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 palzo-orange-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Diverse Tasks</h3>
+                    <p class="text-gray-600">From household chores and errands to specialized skilled assistance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section (Future Vision) -->
+    <section id="how-it-works" class="py-16 md:py-24 bg-gray-100">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 section-title">How Palzo Will Work</h2>
+            <div class="grid md:grid-cols-3 gap-10 relative">
+                <div class="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-orange-200 transform -translate-y-1/2" style="z-index:0;"></div>
+                <div class="bg-white p-8 rounded-xl shadow-lg relative z-10 feature-card">
+                    <div class="palzo-orange-bg text-white rounded-full h-12 w-12 flex items-center justify-center text-2xl font-bold mx-auto mb-6">1</div>
+                    <h3 class="text-xl font-semibold mb-2">Post Your Task</h3>
+                    <p class="text-gray-600">Describe what you need, set your location, and suggest a fair price.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg relative z-10 feature-card">
+                    <div class="palzo-orange-bg text-white rounded-full h-12 w-12 flex items-center justify-center text-2xl font-bold mx-auto mb-6">2</div>
+                    <h3 class="text-xl font-semibold mb-2">Connect with a Pal</h3>
+                    <p class="text-gray-600">Nearby Pals see your task. One accepts, and you're connected!</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg relative z-10 feature-card">
+                    <div class="palzo-orange-bg text-white rounded-full h-12 w-12 flex items-center justify-center text-2xl font-bold mx-auto mb-6">3</div>
+                    <h3 class="text-xl font-semibold mb-2">Task Completed!</h3>
+                    <p class="text-gray-600">Verify completion, pay securely, and rate your Pal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section (Future Vision) -->
+     <section id="features" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 section-title">Exciting Features Planned</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg feature-card transition-all duration-300">
+                    <h3 class="text-xl font-semibold mb-2 palzo-orange-text">📍 Smart Location Matching</h3>
+                    <p class="text-gray-600">Find help or tasks right in your neighborhood.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg feature-card transition-all duration-300">
+                    <h3 class="text-xl font-semibold mb-2 palzo-orange-text">🛡️ Trusted & Verified Pals</h3>
+                    <p class="text-gray-600">Safety is paramount in our community.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg feature-card transition-all duration-300">
+                    <h3 class="text-xl font-semibold mb-2 palzo-orange-text">💰 AI-Assisted Fair Pricing</h3>
+                    <p class="text-gray-600">Get and suggest fair prices for tasks.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg feature-card transition-all duration-300">
+                    <h3 class="text-xl font-semibold mb-2 palzo-orange-text">🛠️ Wide Range of Services</h3>
+                    <p class="text-gray-600">From simple errands to skilled assistance.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg feature-card transition-all duration-300">
+                    <h3 class="text-xl font-semibold mb-2 palzo-orange-text">💳 Secure In-App Payments</h3>
+                    <p class="text-gray-600">Easy and secure transactions (UPI, Cards, Wallet).</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg feature-card transition-all duration-300">
+                    <h3 class="text-xl font-semibold mb-2 palzo-orange-text">💬 Real-Time Chat & Tracking</h3>
+                    <p class="text-gray-600">Coordinate easily and see your Pal's progress.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Pals Section (Sign Up) -->
+    <section id="for-pals" class="py-16 md:py-24 bg-orange-50">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">Interested in Becoming a Pal?</h2>
+            <p class="text-lg text-gray-700 max-w-2xl mx-auto mb-12 leading-relaxed">
+                Want to offer your skills and earn flexibly? Sign up to get notified when we launch our Pal program. Be among the first to join our trusted community of helpers!
+            </p>
+            <a href="https://forms.gle/vvw95bXZYDf2LVSq6" target="_blank" class="btn-palzo-primary text-white font-bold py-3 px-8 rounded-lg text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                Sign Up to Become a Pal
+            </a>
+        </div>
+    </section>
+
+    <!-- Final CTA / Stay Updated -->
+    <section id="stay-updated" class="py-20 md:py-32 hero-bg text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Don't Miss Out on Palzo!</h2>
+            <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto text-orange-50 leading-relaxed">
+                Sign up with your email to receive updates, launch announcements, and be part of the Palzo journey from the very beginning. We're excited to build this community with you!
+            </p>
+            <a href="https://forms.gle/vvw95bXZYDf2LVSq6" target="_blank" class="btn-palzo-primary bg-white text-orange-600 font-bold py-4 px-10 rounded-lg text-lg shadow-xl hover:bg-orange-50 transform hover:scale-105 transition-all duration-300">
+                Keep Me Updated!
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <span class="text-2xl font-bold text-orange-500 mb-6 inline-block">PALZO</span>
+            <ul class="flex justify-center space-x-4 md:space-x-6 mb-6">
+                <li><a href="#features" class="hover:text-orange-400 transition-colors">Features</a></li>
+                <li><a href="#how-it-works" class="hover:text-orange-400 transition-colors">How It Works</a></li>
+                <li><a href="mailto:contact@palzo.app" class="hover:text-orange-400 transition-colors">Contact Us</a></li> 
+                <!-- Replace with your actual contact email -->
+            </ul>
+            <p class="text-sm">&copy; 2025 Palzo. Get Ready, We're Coming Soon!</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') === '#') return; 
+                e.preventDefault();
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden'); 
+                }
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
